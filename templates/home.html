@@ -1,0 +1,16 @@
+<!doctype HTML>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <table>
+            {%for record in ranklist%}
+            <tr>
+                <th>{{record[0]}}</th>
+                <th>{{record[1]}}</th>
+            </tr>
+            {%endfor%}
+        </table>
+    </body>
+</html>
