@@ -11,7 +11,7 @@
               var input, filter, table, tr, td, i, txtValue;
               input = document.getElementById("search");
               filter = input.value.toUpperCase();
-              table = document.getElementById("ranks");
+              table = document.getElementById("problems");
               tr = table.getElementsByTagName("tr");
             
               // Loop through all table rows, and hide those who don't match the search query
@@ -33,29 +33,29 @@
         <nav class="navbar navbar-light bg-light justify-content-between">
             <a class="navbar-brand">Winter Of CP</a>
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" onkeyup="myFunction()" placeholder="Search" aria-label="Search" id="search">
+                <input class="form-control mr-sm-2" onkeyup="myFunction()" type="search" placeholder="Search" aria-label="Search" id ="search">
             </form>
             <form class="form-inline" action="/new_here">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">New Here?</button>
             </form>
-            <form class="form-inline" action="/problems">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Problems</button>
+            <form class="form-inline" action="/">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ranklist</button>
             </form>
         </nav>
-        <table class="table table-dark" id="ranks">
+        <table class="table table-dark" id = "problems">
             <thead>
                 <tr>
                     <th scope = "col">#</th>
-                    <th scope = "col">Handle</th>
-                    <th scope = "col">Solved</th>
+                    <th scope = "col">Problem Name</th>
+                    <th scope = "col">Correct Solutions</th>
                 </tr>
             </thead>
             <tbody>
-                {%for i in range(0,ranklist|length)%}
+                {%for i in range(0,pdata|length)%}
                 <tr>
                     <th scope = "row">{{i+1}}</th>
-                    <td id="handle">{{ranklist[i][0]}}</td>
-                    <td>{{ranklist[i][1]}}</td>
+                    <td><a href = {{ pdata[i][1] }} target = "blank">{{pdata[i][0]}}</td>
+                    <td>{{pdata[i][2]}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
