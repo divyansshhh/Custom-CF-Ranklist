@@ -7,27 +7,27 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script>
             function myFunction() {
-              // Declare variables
-              var input, filter, table, tr, td, i, txtValue;
-              input = document.getElementById("search");
-              filter = input.value.toUpperCase();
-              table = document.getElementById("problems");
-              tr = table.getElementsByTagName("tr");
+                // Declare variables
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("search");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("ranks");
+                tr = table.getElementsByTagName("tr");
             
-              // Loop through all table rows, and hide those who don't match the search query
-              for (i = 0; i < tr.length; i++) {
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
                 td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
-                  txtValue = td.textContent || td.innerText;
-                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
-                  } else {
+                    } else {
                     tr[i].style.display = "none";
-                  }
+                    }
                 }
-              }
+                }
             }
-            </script>
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-light bg-light justify-content-between">
@@ -47,15 +47,26 @@
                 <tr>
                     <th scope = "col">#</th>
                     <th scope = "col">Problem Name</th>
-                    <th scope = "col">Correct Solutions</th>
+                    <th scope = "col">Rating</th>
+                    <th scope = "col">Points</th>
+                    <th scope = "col">Tags</th>
+                    <th scope = "col">Solved</th>
                 </tr>
             </thead>
             <tbody>
                 {%for i in range(0,pdata|length)%}
                 <tr>
                     <th scope = "row">{{i+1}}</th>
-                    <td><a href = {{ pdata[i][1] }} target = "blank">{{pdata[i][0]}}</td>
+                    <td><a href = {{pdata[i][4]}} target = "_blank">{{pdata[i][0]}}</a></td>
+                    <td>{{pdata[i][1]}}</td>
                     <td>{{pdata[i][2]}}</td>
+                    <td>
+                        {%for j in range(0, pdata[i][3]|length)%}
+                            {{pdata[i][3][j]}}
+                            ;
+                        {%endfor%}
+                    </td>
+                    <td>{{pdata[i][5]}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
